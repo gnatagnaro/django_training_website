@@ -15,9 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import first_page
 
-urlpatterns = [
+#Импорт файла с функцией из crm
+from crm import views
+
+'''Прописываем пути определенных страниц, в которые мы передаем значение
+через файл views (в нем функции, в которые попадает значение из html)'''
+urlpatterns =  [
     path('admin/', admin.site.urls),
-    #path('', first_page)
+    path('', views.first_page),
+    path('thanks/', views.thanks_page, name = 'thanks_page')
 ]

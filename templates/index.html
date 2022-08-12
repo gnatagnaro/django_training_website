@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Привет, Ивана! {% endblock %}
+
+{% block content %}
+
+<img src="{% static 'img\wsRFUkE-CEU.jpg' %}" height="200">
+
+
+<script>
+<h2>Привет, Ивана!</h2>
+
+
+<style>
+.css_input {
+color: yellow;
+background-color: black;
+}
+</style>
+
+
+<form action="{% url 'thanks_page' %}" method="POST">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit">ОТПРАВИТЬ</button>
+</form>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+{% if object_list %}
+<table border="10">
+    <tr>
+        <th>id</th>
+        <th>Дата</th>
+        <th>Имя</th>
+        <th>Телефон</th>
+
+    </tr>
+
+{% for obj in object_list %}
+    <tr>
+        <th>{{ obj.id }}</th>
+        <th>{{ obj.order_dt }}</th>
+        <th>{{ obj.order_name }}</th>
+        <th>{{ obj.order_phone }}</th>
+    </tr>
+{% endfor %}
+</table>
+{% else %}
+<h1>Данных нет</h1>
+{% endif %}
+</script>
+
+{% include 'index_old.html' %}
+{% endblock %}
