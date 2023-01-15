@@ -1,0 +1,15 @@
+import requests
+from .models import TeleSettings
+
+token = '5560871510:AAHWSQumEytqL2Il0YMKFe2W1w9q3QsT-Ww'
+chat_id = '@orangatang'
+text = 'Te5st'
+
+
+def sendTelegram():
+	api = 'https://api.telegram.org/bot'
+	method = api + token + '/sendMessage'
+
+	req = requests.post(method, data = {'chat_id': chat_id, 'text': text_slise})
+
+sendTelegram()

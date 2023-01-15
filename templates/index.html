@@ -1,64 +1,36 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %} Привет, Ивана! {% endblock %}
+{% block index %}
+		<!-- карусель -->
+  	{% include 'carousel.html' %}
+  	<!-- Карточки -->
+  	{% include 'price.html' %}
 
-{% block content %}
+  	<!-- форма -->
+  	<section>
+  		<div class="container class_form">
+  			<h1 class="text-3">Оставь заявку и получи услугу</h1>
+  			<div class="row justify-content-center">
+  			<form action="{% url 'thanks_page' %}" method="POST" style="width: 50%;">
+				{% csrf_token %}
+			  <div class="form-group row">
+			    <label for="inputEmail3" class="col-sm-2 col-form-label">Имя</label><br>
+				  {{form.name}}
+			    <div class="">
+			    </div>
+			  </div>
+			  <div class="form-group row">
+			    <label for="inputEmail3" class="col-sm-2 col-form-label">Телефон</label><br>
+				  {{form.phone}}
+			    <div class="">
+			    </div>
+			  </div>
+			  <div style="float: right;" class="form-group row">
+			      <button type="submit" class="btn btn-success">ОСТАВИТЬ ЗАЯВКУ</button>
+			  </div>
+			</form>
+			</div>
+  		</div>
+  	</section>
 
-<img src="{% static 'img\wsRFUkE-CEU.jpg' %}" height="200">
-
-
-<script>
-<h2>Привет, Ивана!</h2>
-
-
-<style>
-.css_input {
-color: yellow;
-background-color: black;
-}
-</style>
-
-
-<form action="{% url 'thanks_page' %}" method="POST">
-    {% csrf_token %}
-
-    {{ form.as_p }}
-
-    <button type="submit">ОТПРАВИТЬ</button>
-</form>
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-
-{% if object_list %}
-<table border="10">
-    <tr>
-        <th>id</th>
-        <th>Дата</th>
-        <th>Имя</th>
-        <th>Телефон</th>
-
-    </tr>
-
-{% for obj in object_list %}
-    <tr>
-        <th>{{ obj.id }}</th>
-        <th>{{ obj.order_dt }}</th>
-        <th>{{ obj.order_name }}</th>
-        <th>{{ obj.order_phone }}</th>
-    </tr>
-{% endfor %}
-</table>
-{% else %}
-<h1>Данных нет</h1>
-{% endif %}
-</script>
-
-{% include 'index_old.html' %}
 {% endblock %}

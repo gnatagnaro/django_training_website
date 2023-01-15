@@ -1,4 +1,7 @@
-"""landingpagewebsite URL Configuration
+"""
+#I - маршрутизатор проверяет путь, который запросил пользователь,
+далее - попадаем во views.py в определенную функцию
+landingpagewebsite URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -15,14 +18,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
 #Импорт файла с функцией из crm
 from crm import views
 
 '''Прописываем пути определенных страниц, в которые мы передаем значение
-через файл views (в нем функции, в которые попадает значение из html)'''
+через файл views (в нем функции, из которых мы впоследствии вытаскиваем
+данные из БД)'''
 urlpatterns =  [
     path('admin/', admin.site.urls),
     path('', views.first_page),
-    path('thanks/', views.thanks_page, name = 'thanks_page')
-]
+    path('thanks/', views.thanks_page, name='thanks_page')
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

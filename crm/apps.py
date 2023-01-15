@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
-#Импортируем название этого класса в сеттингс
+# Импортируем название этого класса в сеттингс
 
 
 class CrmConfig(AppConfig):
