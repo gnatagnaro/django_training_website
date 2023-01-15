@@ -12,6 +12,7 @@ class PriceCard(models.Model):
     def __str__(self):
         return self.pc_value
 
+
     '''Изменение имен, обобщающих список объектов'''
     class Meta:
         verbose_name = 'Цену'
