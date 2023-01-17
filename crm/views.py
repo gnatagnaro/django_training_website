@@ -12,7 +12,23 @@ from cms.models import CmsSlider
 from price.models import PriceCard, PriceTable
 from telebot.sendmessage import sendTelegram
 
+from crm.models import Order, StatusCrm, CommentCrm
+from rest_framework.viewsets import ModelViewSet
+from crm.serializers import OrderSerializer, StatusCrmSerializer, CommentCrmSerializer
 # Create your views here.
+
+class OrderViewSet(ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+
+class StatusCrmViewSet(ModelViewSet):
+    queryset = StatusCrm.objects.all()
+    serializer_class = StatusCrmSerializer
+
+class CommentCrmViewSet(ModelViewSet):
+    queryset = CommentCrm.objects.all()
+    serializer_class = CommentCrmSerializer
+
 
 def first_page(request):
     '''Функция рендерит страницу index.html, импортируем в urls'''
